@@ -41,7 +41,7 @@ namespace U4_W6_D1_5.Controllers
                 }
                 else
                 {
-                    p.FotoProdotto = "login1.png";
+                    p.FotoProdotto = "login.png";
                 }
                 db.Prodotto.Add(p);
                 db.SaveChanges();
