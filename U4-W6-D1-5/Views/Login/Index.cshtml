@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Styles {
+    <style>
+        body {
+            background: url(https://nepomuk.it/wp-content/uploads/2022/02/pizzeria-sterzing.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+    </style>
+}
+
+<div class="min-vh-100 w-100 position-relative">
+    <div class="min-vh-100 w-100 position-absolute d-flex align-items-center top-0" style="background-color: rgba(200, 200, 200, 0.5)">
+        <div class="d-flex w-100">
+            <div class="w-50 mx-auto p-5">
+                <h2 class="text-center mb-4 rounded-pill bg-light p-2 w-50 mx-auto" style="color:darkorange">Sei dei nostri?</h2>
+                <a href="@Url.Action("Login", "Login", new { area = "" })" class="navbar-brand w-100 d-flex justify-content-center">
+                    <img src="~/Content/Img/login1.jpeg" alt="logo" class='w-75 rounded-5' />
+                </a>
+            </div>
+            <div class="w-50 mx-auto p-5">
+                <h2 class="text-center mb-4 rounded-pill bg-light py-2 w-75 mx-auto" style="color:darkorange">Registrati e ordina</h2>
+                <a href="@Url.Action("Register", "Login", new { area = "" })" class="navbar-brand w-100 d-flex justify-content-center">
+                    <img src="~/Content/Img/register.jpeg" alt="logo" class='w-75 rounded-5' />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<U4_W6_D1_5.Models.Prodotto>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section Styles {
+    <link href="~/Content/home.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url(https://static.vecteezy.com/ti/foto-gratuito/p2/2489410-legno-grigio-plank-weathered-texture-di-sfondo-foto.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+    </style>
+}
+
+@if (TempData["Eliminazione"] != null)
+{
+    <div class="alert alert-success w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["Eliminazione"]</div>
+}
+
+<div class="min-vh-100 py-5 d-flex align-items-center justify-content-evenly gap-2 flex-wrap">
+    @foreach (var item in Model)
+    {
+        <div class="card mt-4 mb-5" style="box-shadow: 5px 5px 15px 5px #000000">
+            <div class="card-img">
+                <img src="~/Content/Img/@item.FotoProdotto" alt="immagine" class="prodotto rounded-circle">
+            </div>
+
+            <p class="nome-do-prato">
+                @item.NomeProdotto
+            </p>
+
+            <p class="descricao-prato">
+                @item.Ingredienti
+            </p>
+
+            <p class="preco-do-prato">
+                @string.Format("{0:C}", item.PrezzoProdotto)
+            </p>
+            <div class="p-3">
+                <a href="~/Admin/EditProdotto/@item.IdProdotto" class="btn btn-warning me-3">Modifica <i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="@Url.Action("DeleteProdotto", "Admin", new { id = item.IdProdotto })" class="btn btn-danger">Elimina <i class="fa-solid fa-trash-can"></i></a>
+            </div>
+        </div>
+    }
+</div>

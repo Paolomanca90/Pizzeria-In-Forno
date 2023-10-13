@@ -1,0 +1,67 @@
+﻿@using U4_W6_D1_5.Models
+
+@{
+    ViewBag.Title = "Ordini";
+}
+
+@section Styles{
+    <style>
+        body {
+            background: url(https://nepomuk.it/wp-content/uploads/2022/02/pizzeria-sterzing.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+    </style>
+}
+
+<div class="min-vh-100 d-flex flex-column align-items-center p-5">
+    @if (TempData["Evaso"] != null)
+    {
+        <div class="alert alert-success text-center w-25 mx-auto my-3">@TempData["Evaso"]</div>
+    }
+
+    <table class="w-75 mx-auto table border border-black">
+        <thead>
+            <tr>
+               <th style="background:darkorange" class="border-bottom border-black p-3 fs-5 rounded-top-3">Ordini pagati</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-4 rounded-bottom-3">
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        foreach (Ordine o in Model)
+                        {
+                            <table class="table border border-black mb-3">
+                                <thead>
+                                    <tr>
+                                        <th style="background: rgba(255, 165, 0, 0.5); " class="border-black border-bottom">Ordine</th>
+                                        <th style="background: rgba(255, 165, 0, 0.5);" class="border-black border-bottom">Prodotto</th>
+                                        <th style="background: rgba(255, 165, 0, 0.5);" class="border-black border-bottom">Quantità</th>
+                                        <th style="background: rgba(255, 165, 0, 0.5);" class="border-black border-bottom"><a href="@Url.Action("Evadi", "Admin", new { id = o.IdOrdine })" class="text-dark">Evadi <i class="fa-solid fa-square-check"></i></a></th>
+                                    </tr>
+                                </thead>
+                                @foreach (Dettaglio d in o.Dettaglio)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td>@d.IdOrdine</td>
+                                            <td>@d.Prodotto.NomeProdotto</td>
+                                            <td>@d.Quantita</td>
+                                            <td class="fst-italic text-secondary">Da evadere</td>
+                                        </tr>
+                                    </tbody>
+                                }
+                            </table>
+                        }
+                    }
+                    else
+                    {
+                        <h2 class="text-center text-secondary p-3">Non ci sono ordini da evadere</h2>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>                  
+</div>
+

@@ -1,0 +1,52 @@
+﻿@section Styles {
+    <style>
+        body {
+            background: url(https://e1.pxfuel.com/desktop-wallpaper/247/111/desktop-wallpaper-dark-wood-backgrounds-grey-wood.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+    </style>
+}
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main class="min-vh-100 d-flex flex-column align-items-center text-light py-5 h-100 w-75 mx-auto" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+    @if (TempData["Ordinato"] != null)
+    {
+        <div class="alert alert-success text-center w-25 mx-auto mb-5">@TempData["Ordinato"]</div>
+    }
+
+    <div id="marginbt m-0">
+        <div class="ontainer">
+            <div class="row">
+                <div class="col-6">
+                    <div class="land-img-pos">
+                        <img src="https://i.postimg.cc/6qX28R8R/2.png" alt="">
+                    </div>
+                    <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" class="fst-italic pt-3">Pizzeria "In forno" dal 1980 per regalarvi momenti di gioia</h3>
+                </div>
+                <div class="col-6">
+                    <div class="land-txt-pos">
+                        <h1>La nostra pizzeria</h1>
+                        <p>
+                            Siamo appassionati della pizza e mettiamo molta cura nei dettagli e nella selezione delle materie prime per offrirvi un'esperienza culinaria eccezionale.
+                            Abbiamo a cuore le esigenze ti tutti i nostri clienti, per questo offriamo soluzioni anche per celiaci e vegani.
+                        </p>
+                        <h2>Impasti Speciali</h2>
+                        <p>Offriamo una varietà di impasti speciali tra cui poter scegliere:</p>
+                        <ul>
+                            <li>Impasto al Carbone Vegetale</li>
+                            <li>Impasto al Mais</li>
+                            <li>Impasto alla Canapa</li>
+                            <li>Impasto Integrale</li>
+                        </ul>
+                    </div>
+                    <div class="text-end">
+                        <a class="btn fs-5 mt-4 fw-semibold" style="background:darkorange" href="~/Home/AddOrdine">Ordina ora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

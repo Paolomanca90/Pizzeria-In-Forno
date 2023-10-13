@@ -1,0 +1,185 @@
+﻿@using U4_W6_D1_5.Models
+
+@{
+    ViewBag.Title = "Carrello";
+}
+
+@section Styles {
+    <link href="~/Content/payment.css" rel="stylesheet" />
+}
+
+@if (TempData["Eliminazione"] != null)
+{
+    <div class="alert alert-success w-25 mx-auto text-center mt-3">@TempData["Eliminazione"]</div>
+}
+
+@if (TempData["Modifica"] != null)
+{
+    <div class="alert alert-success w-25 mx-auto text-center mt-3">@TempData["Modifica"]</div>
+}
+
+<div class="min-vh-100 d-flex flex-column justify-content-center">
+    <h1 class="text-center text-light display-4 p-3">Riepilogo dell'ordine @ViewBag.IdOrdine</h1>
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="absolute top-0 left-0 z-3 h-auto d-flex justify-content-evenly align-items-center p-4 flex-wrap">
+            @foreach (Dettaglio d in Model)
+            {
+                <div class="max-w-lg mb-5" style="height: 268px !important">
+                    <div class="d-flex w-100">
+                        <div class="p-4 w-75">
+                            <h2 class="fw-bold pb-3">
+                                @d.Prodotto.NomeProdotto
+                            </h2>
+                            <div class="tag-lines">
+                                <span class="tag me-2">Q.tà: @d.Quantita</span><span class="tag">@string.Format("{0:C}", (d.Quantita * d.Prodotto.PrezzoProdotto))</span>
+                            </div>
+                            <p class="fw-semibold pt-3">
+                                @d.Prodotto.Ingredienti
+                            </p>
+                            <div class="d-flex">
+                                <a href="@Url.Action("DeleteDettaglio", "Home", new { id = d.IdDettaglio })" class="btn btn-danger w-50 me-4">Elimina <i class="fa-solid fa-trash-can"></i></a>
+                                @using (Html.BeginForm("AggiornaDettaglio", "Home", FormMethod.Post, new {@class="d-flex align-items-center"}))
+                                {
+                                    @Html.Hidden("id", d.IdDettaglio)
+                                    <input type="number" name="Quantita" value="@d.Quantita" min="1" style="width:20%" class="rounded text-center border-0 me-1 h-100" />
+                                    <button type="submit" class="btn btn-warning">Modifica Q.tà <i class="fa-regular fa-pen-to-square"></i></button>
+                                }
+                            </div>
+                        </div>
+                        <div class="w-25 my-4">
+                            <img alt="immagine" class="recipe_img" src="https://assets.codepen.io/4927073/tomato_board2.png">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h3 class="text-center fst-italic p-5" style="color:lightgray">Non hai ancora aggiunto prodotti al carrello</h3>
+        <div class="text-center">
+            <i class="fa-solid fa-basket-shopping" style="font-size: 8em; color: lightgray"></i>
+        </div>
+    }
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="text-center pb-5">
+            <button type="button" class="btn w-50 fw-bold fs-5" style="background: darkorange" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Effettua il pagamento <i class="fa-regular fa-credit-card"></i>
+            </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header rounded-top-3">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Pagamento con carta</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="main-back">
+                            <div class="container m-auto mt-0 bg-white p-5 rounded-bottom-3">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <form>
+                                            <div class="header flex-between flex-vertical-center">
+                                                <div class="flex-vertical-center">
+                                                    <i class="fa-brands fa-bitcoin fs-5 me-2" style="color: darkorange"></i>
+                                                    <span class="title">
+                                                        <strong>Coin</strong><span>Pay</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="card-data flex-fill flex-vertical">
+
+                                                <div class="flex-between flex-vertical-center">
+                                                    <div class="card-property-title">
+                                                        <strong>Numero della carta</strong>
+                                                        <span>Inserisci le 16 cifre presenti sulla carta</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-between">
+                                                    <div class="card-number flex-vertical-center flex-fill">
+                                                        <div class="card-number-field flex-vertical-center flex-fill">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
+                                                                <path fill="#ff9800" d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z" />
+                                                                <path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z" />
+                                                                <path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z" />
+                                                            </svg>
+                                                            <input type="text" placeholder="NUMERO DALLA CARTA" class="form-control" id="cardNumber" maxlength="19" name="cardNumber" data-bound="carddigits_mock" data-def="0000 0000 0000 0000" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-between">
+                                                    <div class="card-property-title">
+                                                        <strong>Data di scadena</strong>
+                                                        <span>Inserisci la data di scadenza</span>
+                                                    </div>
+                                                    <div class="card-property-value flex-vertical-center">
+                                                        <div class="input-container half-width">
+                                                            <input class="numbers month-own" data-def="00" type="text" data-bound="mm_mock" placeholder="MM" />
+                                                        </div>
+                                                        <span class="m-md">/</span>
+                                                        <div class="input-container half-width">
+                                                            <input class="numbers year-own" data-def="01" type="text" data-bound="yy_mock" placeholder="AA" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-between">
+                                                    <div class="card-property-title">
+                                                        <strong>CVV</strong>
+                                                        <span>
+                                                            Inserisci il CVV presente sul retro della carta
+                                                        </span>
+                                                    </div>
+                                                    <div class="card-property-value">
+                                                        <div class="input-container">
+                                                            <input id="cvc" placeholder="CVV" maxlength="3" onkeypress="return onlyNumberKey(event)" type="password" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-between">
+                                                    <div class="card-property-title">
+                                                        <strong>Titolare della carta</strong>
+                                                        <span>Inserisci il nome</span>
+                                                    </div>
+                                                    <div class="card-property-value">
+                                                        <div class="input-container">
+                                                            <input id="name" data-bound="name_mock" data-def="Mr. Cardholder" type="text" class="uppercase" placeholder="Titolare della carta" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-between">
+                                                    <div class="card-property-title">
+                                                        <strong>Numero di telefono</strong>
+                                                        <span>Inserisci il n. di telefono</span>
+                                                    </div>
+                                                    <div class="card-property-value">
+                                                        <div class="input-container">
+                                                            <input id="phone" type="text" placeholder="N. DI TELEFONO" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <a href="@Url.Action("Finalize","Home", new { id = ViewBag.IdOrdine })" class="btn pointer w-50" style="background:darkorange">
+                                                    Procedi
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

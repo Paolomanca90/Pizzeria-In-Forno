@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+@if (ViewBag.Errore != null)
+{
+    <div class="alert alert-danger w-25 mx-auto text-center p-4">@ViewBag.Errore</div>
+}
+
+@section Styles {
+    <style>
+        body {
+            background: url(https://nepomuk.it/wp-content/uploads/2022/02/pizzeria-sterzing.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+    </style>
+}
+
+<div class="min-vh-100 position-relative">
+    <div class="min-vh-100 w-100 position-absolute top-0" style="background-color: rgba(200, 200, 200, 0.5)">
+        <div class="min-vh-100 d-flex justify-content-center align-items-center">
+
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "w-50" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="p-4 mx-auto rounded-4" style="background: orange; border:5px solid #bd6132">
+                <h2 class="text-center pb-3 fs-1" style="color: #bd6132">Bentornato</h2>
+                    <div class="form-group text-center mb-3">
+                        @Html.Label("Username", new { @class = "control-label d-block pb-2 text-white fw-bold fs-4" })
+                        @Html.TextBox("Username", "", new { @class = "form-control d-inline fw-semibold" })
+                    </div>
+                    <div class="form-group text-center mb-4">
+                        @Html.Label("Password", new { @class = "control-label d-block pb-2 text-white fw-bold fs-4" })
+                        @Html.TextBox("Password", "", new { @class = "form-control d-inline fw-semibold", type = "password" })
+                    </div>
+                    <div class="form-group">
+                        <div class="text-center">
+                            <input type="submit" value="Accedi" class="btn w-50 text-white fw-bold fs-4" style="background: #bd6132" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

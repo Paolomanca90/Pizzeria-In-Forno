@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html class="min-vh-100 w-100">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - In Forno</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", required: false)
+</head>
+<body class="position-absolute min-vh-100 w-100">
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark p-0" style="background-color: #bd6132">
+        <div class="container">
+            @if (User.Identity.Name == "Admin")
+            {
+                <a href="@Url.Action("Index", "Admin", new { area = "" })" class="navbar-brand p-0" style="width:20%">
+                    <img src="~/Content/Img/logo2.png" alt="logo" class='w-100'/>
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="navbar-brand p-0" style="width:20%">
+                    <img src="~/Content/Img/logo2.png" alt="logo" class='w-100'/>
+                </a>
+            }
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                @if (User.Identity.Name != "" && User.Identity.Name != "Admin")
+                {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Ordina", "AddOrdine", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Carrello", "Payment", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+                else if (User.Identity.Name == "Admin")
+                {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Nuovo prodotto", "AddProdotto", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Ordini", "Ordini", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contabilità", "Cassa", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Accedi", "Index", "Login", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid body-content p-0 m-0 min-vh-100">
+        @RenderBody()
+        <footer class="footer-section">
+        <div class="container">
+            <div class="footer-cta pt-4 ">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4">
+                        <div class="single-cta">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="cta-text">
+                                <h4>Dove trovarci</h4>
+                                <span>Altura 8950-447, Portogallo </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Telefono</h4>
+                                <span>+39 3880416518</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Email</h4>
+                                <span><a href="mailto:paolomanca1990@gmail.com" style="color: lightgoldenrodyellow">paolomanca1990@gmail.com</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content pt-4 pb-1">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-social-icon">
+                                <div class="footer-widget-heading">
+                                    <h3>Social network</h3>
+                                </div>
+                                <ul class="social_icon">
+                                    <li><a href="https://github.com/Paolomanca90"><i class="fa-brands fa-github"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/paolo-manca-developer/"><i class="fa-brands fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Link utili</h3>
+                            </div>
+                            <ul>
+                                <li><a href="https://www.pizzanapoletana.org/it/ricetta_pizza_napoletana">Come fare una pizza</a></li>
+                                <li><a href="https://www.rossopomodoro.it/static/news/Dove-e-Quando-e-Nata-la-Pizza-1234.aspx">Storia della pizza</a></li>
+                                <li><a href="https://www.google.com/search?q=pizza&sca_esv=572890011&rlz=1C1CHWL_itIT1000IT1000&tbm=isch&sxsrf=AM9HkKlnSO6eGzjYVcXSyeLKXkQbDr6MRA:1697122991061&source=lnms&sa=X&ved=2ahUKEwjc5JXo4_CBAxUFSuUKHQOPBLQQ_AUoAXoECAMQAw">Gallery</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Registrati alla newsletter</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>Non perderti i nostri fantastici sconti e coupon.</p>
+                            </div>
+                            <div class="subscribe-form">
+                                <form action="#">
+                                    <input type="text" placeholder="La tua mail">
+                                    <button><i class="fab fa-telegram-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; @DateTime.Now.Year, All Right Reserved <span class="fw-bold">Paolo Leucio Manca</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

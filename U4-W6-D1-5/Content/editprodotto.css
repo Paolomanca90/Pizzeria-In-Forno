@@ -1,0 +1,381 @@
+﻿.boxed {
+    width: 400px;
+    height: 400px;
+}
+.boxed:hover .svg-fill--green {
+    fill: gold;
+    transition: fill 0.3s ease;
+}
+
+.svg-stroke {
+    fill: none;
+    stroke: white;
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+.svg-fill--green {
+    fill: orange;
+    transition: fill 0.3s ease;
+}
+
+.svg-fill--white {
+    fill: white;
+}
+
+.svg-fill--none {
+    fill: none;
+}
+
+#spizza-full {
+    display: none;
+}
+
+.ani {
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+}
+
+.ani-1 .animate{
+    animation-duration: 5000ms;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+.ani-1 .ani_obj__0 {
+    stroke-dasharray: 3143 3145;
+    stroke-dashoffset: 3144;
+    animation-name: ani_obj__draw_0, ani_obj__fade;
+}
+
+.ani-1 .ani_obj__1 {
+    stroke-dasharray: 2317 2319;
+    stroke-dashoffset: 2318;
+    animation-name: ani_obj__draw_1, ani_obj__fade;
+}
+
+.ani-1 .ani_obj__2 {
+    stroke-dasharray: 491 493;
+    stroke-dashoffset: 492;
+    animation-name: ani_obj__draw_2, ani_obj__fade;
+}
+
+.ani_obj__3,
+.ani_obj__4,
+.ani_obj__5,
+.ani_obj__6,
+.ani_obj__7,
+.ani_obj__8 {
+    animation-name: ani_obj__fade_fill;
+}
+
+.ani_obj__9 {
+    stroke-dasharray: 55 57;
+    stroke-dashoffset: 56;
+    animation-name: ani_obj__draw_9, ani_obj__fade;
+}
+
+.ani_obj__10 {
+    stroke-dasharray: 55 57;
+    stroke-dashoffset: 56;
+    animation-name: ani_obj__draw_10, ani_obj__fade;
+}
+
+.ani_obj__11 {
+    stroke-dasharray: 55 57;
+    stroke-dashoffset: 56;
+    animation-name: ani_obj__draw_11, ani_obj__fade;
+}
+
+.ani_obj__12 {
+    stroke-dasharray: 55 57;
+    stroke-dashoffset: 56;
+    animation-name: ani_obj__draw_12, ani_obj__fade;
+}
+
+.ani_obj__13 {
+    stroke-dasharray: 168 170;
+    stroke-dashoffset: 169;
+    animation-name: ani_obj__draw_13, ani_obj__fade;
+}
+
+.ani_obj__14 {
+    stroke-dasharray: 126 128;
+    stroke-dashoffset: 127;
+    animation-name: ani_obj__draw_14, ani_obj__fade;
+}
+
+.ani_obj__15 {
+    stroke-dasharray: 112 114;
+    stroke-dashoffset: 113;
+    animation-name: ani_obj__draw_15, ani_obj__fade;
+}
+
+@keyframes ani_obj__draw {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__fade {
+    0% {
+        stroke-opacity: 1;
+    }
+
+    87.5% {
+        stroke-opacity: 1;
+    }
+
+    100% {
+        stroke-opacity: 0;
+    }
+}
+
+@keyframes ani_obj__fade_fill {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    87.5% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes ani_obj__draw_0 {
+    25% {
+        stroke-dashoffset: 3144;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_1 {
+    25% {
+        stroke-dashoffset: 2318;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_2 {
+    25% {
+        stroke-dashoffset: 492;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_3 {
+    25% {
+        stroke-dashoffset: 330;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_4 {
+    25% {
+        stroke-dashoffset: 285;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_5 {
+    25% {
+        stroke-dashoffset: 248;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_6 {
+    25% {
+        stroke-dashoffset: 248;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_7 {
+    25% {
+        stroke-dashoffset: 202;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_8 {
+    25% {
+        stroke-dashoffset: 202;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_9 {
+    25% {
+        stroke-dashoffset: 56;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_10 {
+    25% {
+        stroke-dashoffset: 56;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_11 {
+    25% {
+        stroke-dashoffset: 56;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_12 {
+    25% {
+        stroke-dashoffset: 56;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_13 {
+    25% {
+        stroke-dashoffset: 169;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_14 {
+    25% {
+        stroke-dashoffset: 127;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani_obj__draw_15 {
+    25% {
+        stroke-dashoffset: 113;
+    }
+
+    56.25% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}

@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Nuovo Ordine";
+    List<int> pz = new List<int> { 1, 2, 3, 4, 5 };
+}
+
+@section Styles {
+    <style>
+        body {
+            background: url(https://e1.pxfuel.com/desktop-wallpaper/247/111/desktop-wallpaper-dark-wood-backgrounds-grey-wood.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+    </style>
+}
+
+@if (ViewBag.Errore != null)
+{
+    <div class="alert alert-danger w-25 mx-auto text-center p-4">@ViewBag.Errore</div>
+}
+
+<div class="min-vh-100 p-5 d-flex justify-content-center flex-column">
+    <div class="w-75 mx-auto p-4 mb-4" style="border: 2px solid darkorange; background:orange">
+        <label class="pe-2 fw-semibold fs-5">Indirizzo di consegna</label>
+        <input class="p-2 rounded" style="width:40%" id="IndirizzoOrdine" />
+        <span class="pd-2 text-danger fst-italic fw-semibold w-25">* se diverso da quello di registrazione</span>
+    </div>
+    <div class="w-75 mx-auto p-4 d-flex mb-3" style="border: 2px solid darkorange; background:orange">
+        <div class="w-75">
+            <label class="fs-5 fw-semibold pe-3">Seleziona il prodotto</label>
+            @Html.DropDownList("Lista Prodotti", new SelectList(ViewBag.Prodotti, "Value", "Text"), new { @class = "rounded w-50 border border-2 border-black text-center", id = "Prodotto" })
+        </div>
+        <div class="w-25 mb-3">
+            <label class="fs-5 fw-semibold pe-3">Quantità</label>
+            @Html.DropDownList("Lista Qty", new SelectList(pz), new { @class = "rounded border border-2 border-black", id = "Qty" })
+        </div>
+        <div class="text-center">
+            <button id="addProdotto" class="btn fw-bold" style="background: darkorange">Aggiungi</button>
+        </div>
+    </div>
+    <div class="w-75 mx-auto p-4 mb-3" id="divCarrello" style="border: 2px solid darkorange; background:orange; display:none">
+        <h2 class="text-secondary">Carrello</h2>
+        <ul id="carrello">
+        </ul>
+        <h4 class="text-end text-secondary">Totale: € 0.00</h4>
+    </div>
+    <div id="divPagamento" class="w-75 mx-auto p-4 mb-3 d-flex justify-content-around align-items-center" style="border: 2px solid darkorange; background: orange; display:none !important">
+        <textarea rows="5" class="rounded w-50 border border-2 border-black me-3" placeholder="Inserisci eventuali note sull'ordine"></textarea>
+        <a id="checkout" class="btn fs-5 w-50 fw-semibold" style="background: darkorange">Procedi con l'ordine <i class="fa fa-arrow-right"></i></a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var carrello = JSON.parse(sessionStorage.getItem("ordine")) || [];
+
+            function visualizzaCarrello() {
+                $("#divCarrello").slideDown();
+                $("#divPagamento").slideDown();
+                var carrelloHtml = $("#carrello");
+                carrelloHtml.empty();
+                var totale = 0;
+                carrello.forEach(function (prodotto) {
+                    var listItem = $("<li>");
+                    listItem.addClass("fs-5");
+                    listItem.html("<strong>Prodotto:</strong> " + prodotto.NomeProdotto + "&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;" + " <strong>Quantità:</strong> " + prodotto.Quantita);
+                    carrelloHtml.append(listItem);
+                    totale += prodotto.PrezzoProdotto * prodotto.Quantita;
+                });
+                $(".text-end.text-secondary").text("Totale: € " + totale.toFixed(2));
+            }
+
+            $("#addProdotto").click(function () {
+                var idProdotto = $("#Prodotto").val();
+                var nomeProdotto = $("#Prodotto option:selected").text();
+                var nome = nomeProdotto.split(' - ')[0];
+                var prezzoProdotto = nomeProdotto.split(' - ')[1];
+                var prezzo = parseFloat(prezzoProdotto.replace(',', '.').replace('€', '').trim());
+                var prodottoEsistente = carrello.find(function (prod) {
+                    return prod.IdProdotto == idProdotto;
+                });
+                if (prodottoEsistente) {
+                    prodottoEsistente.Quantita = parseInt(prodottoEsistente.Quantita) + parseInt($("#Qty").val());
+                }
+                else {
+                    var prodotto = { IdProdotto: idProdotto, NomeProdotto: nome, Quantita: $("#Qty").val(), PrezzoProdotto: prezzo };
+                    carrello.push(prodotto);
+                }
+                sessionStorage.setItem("ordine", JSON.stringify(carrello));
+                visualizzaCarrello();
+            });
+
+            $("#checkout").click(function () {
+                var carrello = JSON.parse(sessionStorage.getItem("ordine")) || [];
+                var indirizzoOrdine = $("#IndirizzoOrdine").val();
+                var noteOrdine = $("#NoteOrdine").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "Checkout",
+                    data: JSON.stringify({
+                        IndirizzoOrdine: indirizzoOrdine,
+                        NoteOrdine: noteOrdine,
+                        carrello: carrello
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        sessionStorage.removeItem("ordine");
+                        window.location.href = "Payment";
+                    },
+                    error: function (error) {
+                        alert("Errore durante la procedura");
+                    }
+                });
+            });
+
+        })
+    </script>
+}
