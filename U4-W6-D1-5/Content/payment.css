@@ -55,6 +55,7 @@ img.recipe_img {
 
 .max-w-lg {
     max-width: 34rem;
+    height: 268px !important;
     background: rgba(255, 255, 255, 0.6);
     text-align: left;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -321,4 +322,10 @@ img.recipe_img {
     .input-container i {
         position: absolute;
         right: 0.5em;
+    }
+
+    @media screen and (max-width: 480px){
+        .max-w-lg{
+            height: 300px !important;
+        }
     }

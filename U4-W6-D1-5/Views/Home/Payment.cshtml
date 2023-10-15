@@ -10,12 +10,12 @@
 
 @if (TempData["Eliminazione"] != null)
 {
-    <div class="alert alert-success w-25 mx-auto text-center mt-3">@TempData["Eliminazione"]</div>
+    <div class="alert alert-success w-50 mx-auto text-center mt-3">@TempData["Eliminazione"]</div>
 }
 
 @if (TempData["Modifica"] != null)
 {
-    <div class="alert alert-success w-25 mx-auto text-center mt-3">@TempData["Modifica"]</div>
+    <div class="alert alert-success w-50 mx-auto text-center mt-3">@TempData["Modifica"]</div>
 }
 
 <div class="min-vh-100 d-flex flex-column justify-content-center">
@@ -25,7 +25,7 @@
         <div class="absolute top-0 left-0 z-3 h-auto d-flex justify-content-evenly align-items-center p-4 flex-wrap">
             @foreach (Dettaglio d in Model)
             {
-                <div class="max-w-lg mb-5" style="height: 268px !important">
+                <div class="max-w-lg mb-5">
                     <div class="d-flex w-100">
                         <div class="p-4 w-75">
                             <h2 class="fw-bold pb-3">
@@ -37,9 +37,9 @@
                             <p class="fw-semibold pt-3">
                                 @d.Prodotto.Ingredienti
                             </p>
-                            <div class="d-flex">
-                                <a href="@Url.Action("DeleteDettaglio", "Home", new { id = d.IdDettaglio })" class="btn btn-danger w-50 me-4">Elimina <i class="fa-solid fa-trash-can"></i></a>
-                                @using (Html.BeginForm("AggiornaDettaglio", "Home", FormMethod.Post, new {@class="d-flex align-items-center"}))
+                            <div class="row">
+                                <a href="@Url.Action("DeleteDettaglio", "Home", new { id = d.IdDettaglio })" class="btn btn-danger col-9 col-lg-5 me-lg-4">Elimina <i class="fa-solid fa-trash-can"></i></a>
+                                @using (Html.BeginForm("AggiornaDettaglio", "Home", FormMethod.Post, new {@class="col-10 col-lg-6 d-flex align-items-center p-0"}))
                                 {
                                     @Html.Hidden("id", d.IdDettaglio)
                                     <input type="number" name="Quantita" value="@d.Quantita" min="1" style="width:20%" class="rounded text-center border-0 me-1 h-100" />

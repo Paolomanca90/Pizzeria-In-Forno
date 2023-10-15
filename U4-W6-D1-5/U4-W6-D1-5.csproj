@@ -210,6 +210,7 @@
     <Content Include="Content\home.css" />
     <Content Include="Content\Img\4-formaggi.png" />
     <Content Include="Content\Img\boscaiola.jpg" />
+    <Content Include="Content\Img\bresaola.jpg" />
     <Content Include="Content\Img\login.jpeg" />
     <Content Include="Content\Img\login1.jpeg" />
     <Content Include="Content\Img\logo.jpeg" />
