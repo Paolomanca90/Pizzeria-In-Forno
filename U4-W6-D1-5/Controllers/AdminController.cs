@@ -87,6 +87,12 @@ namespace U4_W6_D1_5.Controllers
         public ActionResult DeleteProdotto(int id)
         {
             Prodotto p = db.Prodotto.Find(id);
+            var dettagli = db.Dettaglio.Where(x => x.IdProdotto == id && x.Ordine.StatoOrdine == "Pagato").ToList();
+            if(dettagli != null)
+            {
+                TempData["In corso"] = "Concludi prima gli ordini in corso per questo prodotto";
+                return RedirectToAction("Index", "Admin");
+            }
             db.Prodotto.Remove(p);
             db.SaveChanges();
             TempData["Eliminazione"] = "Prodotto eliminato dall'elenco";

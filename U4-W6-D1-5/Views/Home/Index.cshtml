@@ -1,4 +1,5 @@
 ﻿@section Styles {
+    <link href="~/Content/login.css" rel="stylesheet" />
     <style>
         body {
             background: url(https://e1.pxfuel.com/desktop-wallpaper/247/111/desktop-wallpaper-dark-wood-backgrounds-grey-wood.jpg) no-repeat fixed;
@@ -11,22 +12,22 @@
     ViewBag.Title = "Home Page";
 }
 
-<main class="min-vh-100 d-flex flex-column align-items-center text-light py-5 h-100 w-75 mx-auto" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+<main class="min-vh-100 d-flex align-items-center text-light p-5 h-100 " style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
     @if (TempData["Ordinato"] != null)
     {
         <div class="alert alert-success text-center w-25 mx-auto mb-5">@TempData["Ordinato"]</div>
     }
 
     <div id="marginbt m-0">
-        <div class="ontainer">
+        <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-lg-6 hero">
                     <div class="land-img-pos">
-                        <img src="https://i.postimg.cc/6qX28R8R/2.png" alt="">
+                        <img src="https://i.postimg.cc/6qX28R8R/2.png" alt="" class="w-100">
                     </div>
                     <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" class="fst-italic pt-3">Pizzeria "In forno" dal 1980 per regalarvi momenti di gioia</h3>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <div class="land-txt-pos">
                         <h1>La nostra pizzeria</h1>
                         <p>

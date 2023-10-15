@@ -18,6 +18,11 @@
     <div class="alert alert-success w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["Eliminazione"]</div>
 }
 
+@if (TempData["In corso"] != null)
+{
+    <div class="alert alert-danger w-50 mx-auto text-center m-4 fw-bold fs-5">@TempData["In corso"]</div>
+}
+
 <div class="min-vh-100 py-5 d-flex align-items-center justify-content-evenly gap-2 flex-wrap">
     @foreach (var item in Model)
     {

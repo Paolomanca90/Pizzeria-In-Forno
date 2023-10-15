@@ -20,7 +20,7 @@
             {
                 <div class="alert alert-danger w-25 mx-auto text-center m-4">@ViewBag.Errore</div>
             }
-            @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "w-50" }))
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "w-75" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="p-4 mx-auto rounded-4" style="background: orange; border:5px solid #bd6132">

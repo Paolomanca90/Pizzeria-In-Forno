@@ -19,8 +19,8 @@
     </style>
 }
 
-<div class="d-flex justify-content-evenly align-items-center p-5">
-    @using (Html.BeginForm("AddProdotto", "Admin", FormMethod.Post, new { @class = "w-50", @enctype = "multipart/form-data" }))
+<div class="row justify-content-evenly align-items-center p-5">
+    @using (Html.BeginForm("AddProdotto", "Admin", FormMethod.Post, new { @class = "col-12 col-lg-6", @enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 

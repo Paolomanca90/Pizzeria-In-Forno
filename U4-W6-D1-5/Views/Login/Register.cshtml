@@ -26,7 +26,7 @@
             {
                 <div class="alert alert-danger w-25 mx-auto text-center m-4">@ViewBag.Username</div>
             }
-            @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "w-50 min-vh-100 py-5" }))
+            @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "w-75 py-5" }))
             {
                 @Html.AntiForgeryToken()
 

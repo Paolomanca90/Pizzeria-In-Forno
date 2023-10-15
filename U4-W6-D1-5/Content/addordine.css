@@ -1,0 +1,27 @@
+﻿@media screen and (max-width: 480px) {
+    .ordine {
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .ordine label, .ordine input, .ordine span, .ordine div {
+            width: 100% !important;
+        }
+
+        .ordine div {
+            margin-bottom: 1em;
+        }
+
+        .ordine ul li {
+            font-size: 0.8em !important;
+        }
+
+    #divPagamento textarea, #divPagamento a {
+          width: 75% !important;
+          margin: 0 !important;
+        }
+    #divPagamento a{
+        margin-top: 1em !important;
+    }
+}
